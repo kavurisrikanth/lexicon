@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+#home_box {
+    border: 1%;
+    padding: 1%;
+}
+
+#search_query {
+    font-family: 'Montserrat';
+    text-align: center;
+}
+
+#errors_box {
+    align-content: center;
+}
+
+#results_box {
+    padding: 1%;
+}
+
+.tweets_box {
+    align-content: center;
+}

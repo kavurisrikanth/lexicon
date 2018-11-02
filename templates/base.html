@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {'packages':['corechart']});
+
+            const drawChart = function() {
+                console.log('Entered method drawChart()');
+                console.log('pos: ' + pos_per + ', neg: ' + neg_per + ', neu: ' + neu_per);
+                var data = google.visualization.arrayToDataTable(
+                    [
+                        [{label: 'Sentiment', type: 'string'}, {label: 'Percentage', type: 'string'}],
+                        ['Positive', pos_per],
+                        ['Negative', neg_per],
+                        ['Neutral', neu_per]
+                    ]
+                );
+
+                var options = {
+                    title: 'Tweets'
+                };
+
+                if(!document.getElementById('piechart')) {
+                    console.log('Returning because pie chart does not exist');
+                    return;
+                }
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                chart.draw(data, options);
+                console.log('All done. Exiting.');
+            }
+
+            google.charts.setOnLoadCallback(drawChart);
+        </script>
+        <title>{% block head_title %}{% endblock head_title %}</title>
+        {% include "snippets/css.html" %}
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo">Logo</a>
+            </div>
+        </nav>
+        {% block function_setup_js %}{% endblock function_setup_js %}
+        
+        {% block content %}{% endblock content %}
+
+        {% include "snippets/js.html" %}
+        {% block custom_js %}{% endblock %}
+    </body>
+</html>
